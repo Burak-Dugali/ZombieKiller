@@ -4,16 +4,26 @@ using UnityEngine.UI;
 
 public class MissionCheckPoint : MonoBehaviour
 {
-    public string checkpoint1;
+    private string checkpoint1;
     int totalScore;
     public Text scoreTxt;
     int newScore;
+    bool isCheckpointReached;
 
     public void Start()
     {
+        //PlayerPrefs.DeleteAll();
+        scoreTxt.text = " ";
         checkpoint1 = "checkpoint_1_reached";
-        //scoreTxt.text = checkpoint1;
-        //Checkpoint_1();
+        if (isCheckpointReached == false)
+        {
+            scoreTxt.text = " ";
+        }
+        else if(isCheckpointReached == true)
+        {
+            Checkpoint_1();
+            scoreTxt.text = checkpoint1;
+        }
     }
 
     public void FixedUpdate()
@@ -23,7 +33,7 @@ public class MissionCheckPoint : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Checkpoint_1")
+        if(other.gameObject.CompareTag("Checkpoint_1"))
         {
             PlayerPrefs.SetString(checkpoint1,checkpoint1);
         }
@@ -34,7 +44,7 @@ public class MissionCheckPoint : MonoBehaviour
         if (PlayerPrefs.HasKey(checkpoint1))
         {
             scoreTxt.text = checkpoint1;
-            Debug.Log("Checkpoint");
+            //Debug.Log("Checkpoint");
         }
     }
 

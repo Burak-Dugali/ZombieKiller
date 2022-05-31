@@ -13,6 +13,7 @@ public class CharacterStats : MonoBehaviour
     public float _currentMoney;
     public float _maxMoney;
     public Text _moneyText;
+    private Gun gun;
     //[SerializeField] private GameObject enemy;
 
     public PanelSystem1 panel;
@@ -58,8 +59,11 @@ public class CharacterStats : MonoBehaviour
     {
         panel.DiedPanel.SetActive(true);
         panel.Crosshair.SetActive(false);
-        yield return new WaitForSeconds(0.1f);
         Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        //gun.IsMouseOverUI();
+        yield return new WaitForSeconds(0.1f);
     }
 
     public void SetHealthTo(float healthToSetTo)

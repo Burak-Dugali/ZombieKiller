@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
@@ -58,6 +59,11 @@ public class Gun : MonoBehaviour
         }
     }
 
+    public bool IsMouseOverUI()
+    {
+        return EventSystem.current.IsPointerOverGameObject();
+    }
+
     public void Reload()
     {
         isReloading = true;
@@ -99,8 +105,6 @@ public class Gun : MonoBehaviour
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
                 Debug.LogWarning(hit.transform.name);
-
-
             }
 
             CharacterStats stats = hit.transform.GetComponent<CharacterStats>();

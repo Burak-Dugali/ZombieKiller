@@ -7,6 +7,7 @@ public class PanelSystem1 : MonoBehaviour
 {
     public GameObject PausePanel;
     public GameObject DiedPanel;
+    public GameObject OptionsPanel;
     public bool escPressed = false;
     public GameObject Crosshair;
     private Gun gun;
@@ -15,8 +16,10 @@ public class PanelSystem1 : MonoBehaviour
     {
         PausePanel.SetActive(false);
         DiedPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
         //LockCursor();
         Crosshair.SetActive(true);
+        LockCursor();
     }
 
     public void Update()
@@ -33,7 +36,7 @@ public class PanelSystem1 : MonoBehaviour
             escPressed = true;
             UnLockCursor();
             Crosshair.SetActive(false);
-            gun.canShoot = true;
+            gun.canShoot = false;
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && escPressed == true)
         {
@@ -42,7 +45,7 @@ public class PanelSystem1 : MonoBehaviour
             escPressed = false;
             LockCursor();
             Crosshair.SetActive(true);
-            gun.canShoot = false;
+            gun.canShoot = true;
         }
     }
 
@@ -59,6 +62,12 @@ public class PanelSystem1 : MonoBehaviour
         escPressed = false;
     }
 
+    public void OptionsButtonPressed()
+    {
+        OptionsPanel.SetActive(true);
+        PausePanel.SetActive(false);
+    }
+
     public void DiedPanelRestart()
     {
         SceneManager.LoadScene("Game");
@@ -68,10 +77,12 @@ public class PanelSystem1 : MonoBehaviour
     private void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void UnLockCursor()
     {
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
