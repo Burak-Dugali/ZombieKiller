@@ -15,7 +15,7 @@ public class Gun : MonoBehaviour
     private bool isReloading = false;
     public bool canShoot;
 
-
+    public GameObject GunLight;
     //private LayerMask layerMask;
     private RaycastHit hit;
 
@@ -103,6 +103,7 @@ public class Gun : MonoBehaviour
         if(canShoot == true)
         {
             StartCoroutine(ShootDelay());
+            Instantiate(GunLight,this.transform);
             muzzleFlash.Play();
 
             //RaycastHit hit;
