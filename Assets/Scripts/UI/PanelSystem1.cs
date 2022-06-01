@@ -10,21 +10,26 @@ public class PanelSystem1 : MonoBehaviour
     public GameObject OptionsPanel;
     public bool escPressed = false;
     public GameObject Crosshair;
-    private Gun gun;
+    public Gun gun;
+
+    //public GameObject GamePausedText;
+    //public GameObject ResumeButton;
+    //public GameObject OptionsButton;
+    //public GameObject MenuButton;
 
     private void Start()
     {
         PausePanel.SetActive(false);
         DiedPanel.SetActive(false);
         OptionsPanel.SetActive(false);
-        //LockCursor();
+
         Crosshair.SetActive(true);
         LockCursor();
     }
 
     public void Update()
     {
-        EscapeReferences();
+        EscapeReferences();       
     }
 
     public virtual void EscapeReferences()
@@ -32,6 +37,11 @@ public class PanelSystem1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && escPressed == false)
         {
             PausePanel.SetActive(true);
+            //GamePausedText.SetActive(true);
+            //ResumeButton.SetActive(true);
+            //OptionsButton.SetActive(true);
+            //MenuButton.SetActive(true);
+
             Time.timeScale = 0;
             escPressed = true;
             UnLockCursor();
@@ -57,6 +67,7 @@ public class PanelSystem1 : MonoBehaviour
     public void ResumeGame()
     {
         PausePanel.SetActive(false);
+        Crosshair.SetActive(true);
         Time.timeScale = 1;
         LockCursor();
         escPressed = false;

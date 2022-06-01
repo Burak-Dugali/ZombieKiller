@@ -15,6 +15,10 @@ public class Gun : MonoBehaviour
     private bool isReloading = false;
     public bool canShoot;
 
+
+    //private LayerMask layerMask;
+    private RaycastHit hit;
+
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
     public Text currentAmmoText;
@@ -34,6 +38,7 @@ public class Gun : MonoBehaviour
 
     public void Update()
     {
+        //Debug.Log(canShoot);
         currentAmmoText.text = currentAmmo.ToString();
         maxAmmoText.text = maxAmmo.ToString();
 
@@ -100,12 +105,23 @@ public class Gun : MonoBehaviour
             StartCoroutine(ShootDelay());
             muzzleFlash.Play();
 
-            RaycastHit hit;
+            //RaycastHit hit;
 
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
                 Debug.LogWarning(hit.transform.name);
             }
+
+            //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+            //{
+            //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            //    Debug.Log("Hit");
+            //}
+            //else
+            //{
+            //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+            //    Debug.Log("No Hit");
+            //}
 
             CharacterStats stats = hit.transform.GetComponent<CharacterStats>();
             if (stats != null)
