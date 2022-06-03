@@ -38,13 +38,15 @@ public class PanelSystem : MonoBehaviour
     }
     public void MenuToGameScene()
     {
-        SceneManager.LoadScene("Deneme");
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void GameToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.None;
     }
 

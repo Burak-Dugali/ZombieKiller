@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour
         HandleLook();
     }
 
-    private void HandleLook()
+    public void HandleLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

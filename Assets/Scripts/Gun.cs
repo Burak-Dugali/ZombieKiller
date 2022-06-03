@@ -11,7 +11,9 @@ public class Gun : MonoBehaviour
     
     public int currentAmmo;
     public int maxAmmo;
-    public float reloadtime = 2f;
+    public int magazineMaxAmmo;
+
+    public float reloadtime = 3f;
     private bool isReloading = false;
     public bool canShoot;
 
@@ -24,16 +26,24 @@ public class Gun : MonoBehaviour
     public Text currentAmmoText;
     public Text maxAmmoText;
     public Animator anim;
+    public AudioSource GunShoot;
+    public AudioSource ReloadSound;
+    public AudioSource EmptyGunSound;
 
     //public PanelSystem1 panel1;
 
     public void Start()
-    {
-        maxAmmo = 20;
-        currentAmmo = maxAmmo;
+    {   
         currentAmmoText.text = currentAmmo.ToString();
         maxAmmoText.text = maxAmmo.ToString();
         canShoot = true;
+    }
+
+    public void Awake()
+    {
+        maxAmmo = 30;
+        magazineMaxAmmo = 20; 
+        currentAmmo = magazineMaxAmmo;
     }
 
     public void Update()
@@ -47,11 +57,11 @@ public class Gun : MonoBehaviour
             return;
         }
 
-        if (currentAmmo <= 0)
-        {
-            Reload();
-            return;
-        }
+        //if (currentAmmo <= 0 && maxAmmo>0)
+        //{
+        //    Reload();
+        //    return;
+        //}
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -73,19 +83,24 @@ public class Gun : MonoBehaviour
     {
         isReloading = true;
         canShoot = false;
-        Debug.LogError("Reloading...");
+        //Debug.LogWarning("Reloading...");
         StartCoroutine(ReloadDelay());
     }
 
     public IEnumerator ReloadDelay()
     {
-        //maxAmmo = maxAmmo - currentAmmo;
-        //maxAmmoText.text = maxAmmo.ToString();
-
+        ReloadSound.Play();
         anim.SetBool("ReloadTrigger",true);
         yield return new WaitForSeconds(reloadtime);
         anim.SetBool("ReloadTrigger", false);
-        currentAmmo = maxAmmo;
+        maxAmmo -= magazineMaxAmmo - currentAmmo;
+        currentAmmo = magazineMaxAmmo;
+        if (maxAmmo < 0)
+        {
+            currentAmmo += maxAmmo;
+            maxAmmo = 0;
+        }
+        
         isReloading = false;
         canShoot = true;
     }
@@ -93,6 +108,11 @@ public class Gun : MonoBehaviour
     public IEnumerator ShootDelay()
     {
         yield return new WaitForSeconds(0.1f);
+        GunShoot.Play();
+        muzzleFlash.Play();
+        anim.SetBool("Recoil",true);
+        yield return new WaitForSeconds(0.1f);
+        anim.SetBool("Recoil", false);
         currentAmmo--;
         currentAmmoText.text = currentAmmo.ToString();
         maxAmmoText.text = maxAmmo.ToString();
@@ -100,13 +120,15 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
-        if(canShoot == true)
+
+        if (currentAmmo<=0)
+        {
+            EmptyGunSound.Play();
+        }
+        else if(canShoot == true && currentAmmo>0)
         {
             StartCoroutine(ShootDelay());
             Instantiate(GunLight,this.transform);
-            muzzleFlash.Play();
-
-            //RaycastHit hit;
 
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {

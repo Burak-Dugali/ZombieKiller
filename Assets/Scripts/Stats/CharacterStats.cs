@@ -6,15 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class CharacterStats : MonoBehaviour
 {
-    [SerializeField] protected float health;
-    [SerializeField] protected float maxHealth;
+    [SerializeField] public float health;
+    [SerializeField] public float maxHealth;
     [SerializeField] protected bool isDead;
 
-    public float _currentMoney;
-    public float _maxMoney;
-    public Text _moneyText;
-    private Gun gun;
-    //[SerializeField] private GameObject enemy;
+    public int _currentScore;
+    public int _maxScore;
+    public Text _ScoreText;
 
     public PanelSystem1 panel;
 
@@ -36,33 +34,21 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    //public virtual void CheckAmmo()
-    //{
-    //    if(currentAmmo <= 0)
-    //    {
-    //        currentAmmo = 0;
-    //        //Reload();
-    //    }
-    //    if(currentAmmo >= maxAmmo)
-    //    {
-    //        currentAmmo = maxAmmo;
-    //    }
-    //}
-
     public virtual void Die()
     {
         isDead = true;
         StartCoroutine(DeadScreen());
     }
 
-    private IEnumerator DeadScreen()
+    public IEnumerator DeadScreen()
     {
+        //Debug.LogWarning("Dead");
+
         panel.DiedPanel.SetActive(true);
         panel.Crosshair.SetActive(false);
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        //gun.IsMouseOverUI();
         yield return new WaitForSeconds(0.1f);
     }
 
@@ -71,12 +57,6 @@ public class CharacterStats : MonoBehaviour
         health = healthToSetTo;
         CheckHealth();
     }
-
-    //public void SetAmmoTo(float ammoToSetTo)
-    //{
-    //    currentAmmo = ammoToSetTo;
-    //    CheckAmmo();
-    //}
 
     public void TakeDamage(float damage)
     {
@@ -95,12 +75,9 @@ public class CharacterStats : MonoBehaviour
         health = 100;
         maxHealth = 100;
 
-        //maxAmmo = 90;
-        //SetAmmoTo(maxAmmo);
-
-        _maxMoney = 500;
-        _currentMoney = _maxMoney;
-        _moneyText.text = " " + _currentMoney;
+        _maxScore = 9999;
+        _currentScore = 0;
+        _ScoreText.text = " " + _currentScore;
 
         SetHealthTo(maxHealth);
         isDead = false;

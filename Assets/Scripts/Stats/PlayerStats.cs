@@ -25,7 +25,7 @@ public class PlayerStats : CharacterStats
         base.CheckHealth();
         hud.UpdateHealth(health, maxHealth);
         //hud.UpdateAmmo(ammo, maxAmmo);
-    }    
+    }
 
     private void Update()
     {
