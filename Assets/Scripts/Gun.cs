@@ -41,14 +41,14 @@ public class Gun : MonoBehaviour
 
     public void Awake()
     {
-        maxAmmo = 30;
+        maxAmmo = 90;
         magazineMaxAmmo = 20; 
         currentAmmo = magazineMaxAmmo;
     }
 
     public void Update()
     {
-        //Debug.Log(canShoot);
+        //Debug.Log(currentAmmo);
         currentAmmoText.text = currentAmmo.ToString();
         maxAmmoText.text = maxAmmo.ToString();
 
@@ -145,9 +145,9 @@ public class Gun : MonoBehaviour
             //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
             //    Debug.Log("No Hit");
             //}
-
+            
             CharacterStats stats = hit.transform.GetComponent<CharacterStats>();
-            if (stats != null)
+            if (stats != null && !hit.transform.gameObject.name.Equals("Player"))
             {
                 stats.TakeDamage(damage);
             }
