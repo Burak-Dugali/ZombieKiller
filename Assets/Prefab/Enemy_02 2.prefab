@@ -1321,7 +1321,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: dc56c81a2c5012e45ba7d74d58b4d45d, type: 3}
+  - {fileID: 2100000, guid: 98a14abf7dc55be4fb6be7a3598ab8c3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2054,6 +2054,7 @@ GameObject:
   - component: {fileID: 8003480494309866504}
   - component: {fileID: 2827991681752439484}
   - component: {fileID: 1286090902529434256}
+  - component: {fileID: 1862581239}
   m_Layer: 0
   m_Name: Enemy_02 2
   m_TagString: Enemy
@@ -2193,7 +2194,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7193228042441212227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4251585548145454d96adbb10c025633, type: 3}
   m_Name: 
@@ -2222,33 +2223,6 @@ MonoBehaviour:
   edgeIterations: 4
   edgeDistance: 0.5
   anim: {fileID: 8003480494309866517}
-  waypoints:
-  - {fileID: 7791342159798195129, guid: fed19526e44f2144f91da7d838335368, type: 3}
-  - {fileID: 1201309791097565994, guid: 9d461599c15d1af47b7bc0f43978432b, type: 3}
-  - {fileID: 5134759379455278806, guid: 4697febec5764f74bb38dbdf8cf9e69e, type: 3}
-  - {fileID: 7458078409125578629, guid: d4dde03613492d14f98a39745a09cb2f, type: 3}
-  - {fileID: 4932813234314685603, guid: 1c9002807de5581469bec1ce2e9a3d75, type: 3}
-  - {fileID: 3508199792772208683, guid: 1b6a2239a63348f44ad6a80e04327dd6, type: 3}
-  - {fileID: 8995213938693414709, guid: 55978d666cde0cd429e23f58d3444b78, type: 3}
-  - {fileID: 2182772532306250652, guid: 42a29ebd7246f944f9de6a1cf0201442, type: 3}
-  - {fileID: 8123444292549858516, guid: 5121c302fe3f32541846f69bf1bb4313, type: 3}
-  - {fileID: 7642068234694469631, guid: 677ac98d7404b1e43917b25f289b5a06, type: 3}
-  - {fileID: 521428646486004291, guid: a3415733822a5a6489e95b547befedf6, type: 3}
-  - {fileID: 6654140592960945334, guid: bbed18b7560a0bd4a91aaddd50f62121, type: 3}
-  - {fileID: 5577695286380667967, guid: fdaa0187354e65448a06719c0500c948, type: 3}
-  - {fileID: 9195583690385347242, guid: eeef9d11990c5df4e999c985d8b503cc, type: 3}
-  - {fileID: 1907626288392780, guid: 956b1c7e5f99ebc4898aae8ee0614971, type: 3}
-  - {fileID: 7857145682938295965, guid: 13074125afe26634498da0fc08d6cf31, type: 3}
-  - {fileID: 5791343471681972155, guid: 530ba0298d530bf43af12d54106f9c4d, type: 3}
-  - {fileID: 3168163414124254088, guid: 146ea014d76ef104b8d0d45d624c3ddb, type: 3}
-  - {fileID: 2831376016244555154, guid: ce44c954361ba1740acbba9ee6288ed2, type: 3}
-  - {fileID: 2022578599985736046, guid: 04095b433fb92e14298d1daa5c4fee49, type: 3}
-  - {fileID: 6134597905428551768, guid: 7c2b9cffec2a7eb4eb34893036d9002b, type: 3}
-  - {fileID: 5399422448830652417, guid: fd870512b7a3b2046bb1698280cdcb58, type: 3}
-  - {fileID: 7857481846022470365, guid: 15ee51b6acfb45648812a493eddaffa1, type: 3}
-  - {fileID: 4762112241585939407, guid: af41f43414b7abd408cfa9df2a3ebee3, type: 3}
-  - {fileID: 4801968738323410358, guid: c9adcb3c3fd7a6049ba08784a77fb538, type: 3}
-  - {fileID: 8316359637361113, guid: b5417c116efc9dd46b50a171deef3a47, type: 3}
 --- !u!114 &1286090902529434256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2269,6 +2243,27 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &1862581239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7193228042441212227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b45f32b350b77f498e20c270c58231b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hedef: {fileID: 8780767460843585697, guid: 7f6f6aad404615d429358c80fbb844e4, type: 3}
+  mesafe: 0
+  TakipMesafesi: 10
+  TakipBirakmaMesafesi: 20
+  takip: 0
+  DurmaMesafesi: 1.5
+  KosmaHizi: 5
+  YurumeHizi: 2
+  Durdu: 0
 --- !u!1 &7211086024528552895
 GameObject:
   m_ObjectHideFlags: 0

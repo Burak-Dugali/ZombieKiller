@@ -48,6 +48,7 @@ public class ZombieStats : CharacterStats
         if(OnEnemyKilled != null)
         {
             OnEnemyKilled();
+            OnEnemyKilled();
         }
         //Instantiate(EnemyPrefab, new Vector3(0, 1, 0), Quaternion.identity);
     }
