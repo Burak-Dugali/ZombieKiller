@@ -21,7 +21,8 @@ public class AIControl : MonoBehaviour
     void Start()
     {
         yapayZeka = GetComponent<NavMeshAgent>();
-
+        Vector3 pos = new Vector3(Random.Range(400.0f, 700.0f), 0, Random.Range(400.0f, 700.0f));
+        yapayZeka.destination = pos;
 
 
     }
@@ -45,8 +46,9 @@ public class AIControl : MonoBehaviour
         {
             takip = false;
             yapayZeka.speed = YurumeHizi;
-            Vector3 pos = yapayZeka.transform.position +  new Vector3(Random.Range(-20.0f, 20.0f), 0, Random.Range(-20.0f, 20.0f));
+            Vector3 pos = new Vector3(Random.Range(400.0f, 700.0f), 0, Random.Range(400.0f, 700.0f));
             yapayZeka.destination = pos;
+            //Debug.LogWarning(pos);
 
         }
         if (mesafe < DurmaMesafesi)
@@ -64,8 +66,9 @@ public class AIControl : MonoBehaviour
         {
             if (yapayZeka.remainingDistance < 1)
             {
-                Vector3 pos = transform.position +  new Vector3(Random.Range(-20.0f, 20.0f), 0, Random.Range(-20.0f, 20.0f));
+                Vector3 pos = new Vector3(Random.Range(400.0f, 700.0f), 0, Random.Range(400.0f, 700.0f));
                 yapayZeka.destination = pos;
+                //Debug.LogWarning(pos);
             }
 
         }
