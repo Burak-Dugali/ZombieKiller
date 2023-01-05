@@ -23,8 +23,6 @@ public class AIControl : MonoBehaviour
         yapayZeka = GetComponent<NavMeshAgent>();
         Vector3 pos = new Vector3(Random.Range(400.0f, 700.0f), 0, Random.Range(400.0f, 700.0f));
         yapayZeka.destination = pos;
-
-
     }
 
     void Update()
@@ -49,7 +47,6 @@ public class AIControl : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(400.0f, 700.0f), 0, Random.Range(400.0f, 700.0f));
             yapayZeka.destination = pos;
             //Debug.LogWarning(pos);
-
         }
         if (mesafe < DurmaMesafesi)
         {
@@ -70,7 +67,6 @@ public class AIControl : MonoBehaviour
                 yapayZeka.destination = pos;
                 //Debug.LogWarning(pos);
             }
-
         }
 
     }
