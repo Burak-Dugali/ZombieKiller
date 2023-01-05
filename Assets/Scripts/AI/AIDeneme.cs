@@ -180,8 +180,9 @@ public class AIDeneme : CharacterStats
 
     public IEnumerator Damagee()
     {
+        anim.SetBool("Attack",true);
         yield return new WaitForSeconds(1f);
-        anim.SetTrigger("Attack");
+        anim.SetBool("Attack", false);
     }
     private void AttackTarget(CharacterStats statsToDamage)
     {

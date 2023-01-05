@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Gun : MonoBehaviour
 {
     public float damage = 10f;
-    public float range = 100f;
+    public float range = 150f;
     
     public int currentAmmo;
     public int maxAmmo;
@@ -37,18 +37,19 @@ public class Gun : MonoBehaviour
         currentAmmoText.text = currentAmmo.ToString();
         maxAmmoText.text = maxAmmo.ToString();
         canShoot = true;
-    }
-
-    public void Awake()
-    {
-        maxAmmo = 90;
+        maxAmmo = 30;
         magazineMaxAmmo = 20; 
         currentAmmo = magazineMaxAmmo;
     }
 
+    public void Awake()
+    {
+        
+    }
+
     public void Update()
     {
-        //Debug.Log(currentAmmo);
+        //Debug.Log(canShoot);
         currentAmmoText.text = currentAmmo.ToString();
         maxAmmoText.text = maxAmmo.ToString();
 
@@ -145,9 +146,9 @@ public class Gun : MonoBehaviour
             //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
             //    Debug.Log("No Hit");
             //}
-            
+
             CharacterStats stats = hit.transform.GetComponent<CharacterStats>();
-            if (stats != null && !hit.transform.gameObject.name.Equals("Player"))
+            if (stats != null)
             {
                 stats.TakeDamage(damage);
             }
