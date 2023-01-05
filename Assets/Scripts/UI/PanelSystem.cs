@@ -26,9 +26,23 @@ public class PanelSystem : MonoBehaviour
     public GameObject gamereseted;
     public Animator gameResetedanim;
     //public string resetSurepopUp;
+    // private Gun gun;
+    // private CharacterStats stats;
+    // private PlayerHUD hud;
 
     void Start()
     {
+        // gun = GetComponent<Gun>();
+        // stats = GetComponent<CharacterStats>();
+        // hud = GetComponent<PlayerHUD>();
+        //
+        // gun.currentAmmo = PlayerPrefs.GetInt("CurrentAmmo");
+        // gun.maxAmmo = PlayerPrefs.GetInt("MaxAmmo");
+        // stats._currentScore = PlayerPrefs.GetInt("CurrentMoney");
+        // stats.health = PlayerPrefs.GetFloat("CurrentHealth");
+        // hud.UpdateAmmo(gun.currentAmmo,gun.maxAmmo);
+        // hud.UpdateHealth(stats.health,stats.maxHealth);
+        
         mainPanel.SetActive(true);
         optionsPanel.SetActive(false);
         ResetPanel.SetActive(false);

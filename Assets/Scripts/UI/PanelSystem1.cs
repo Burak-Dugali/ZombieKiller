@@ -22,17 +22,11 @@ public class PanelSystem1 : MonoBehaviour
     //public GameObject SaveButton;
     //public GameObject MenuButton;
 
-    private void Start()
+    public void Start()
     {
-        gun.currentAmmo = PlayerPrefs.GetInt("CurrentAmmo");
-        gun.maxAmmo = PlayerPrefs.GetInt("MaxAmmo");
-        stats._currentScore = PlayerPrefs.GetInt("CurrentMoney");
-        stats.health = PlayerPrefs.GetFloat("CurrentHealth");
-        hud.UpdateAmmo(gun.currentAmmo,gun.maxAmmo);
-        hud.UpdateHealth(stats.health,stats.maxHealth);
-
-
-
+        //PlayerPrefs.DeleteAll();
+        PlayerPrefsGet();
+        
         PausePanel.SetActive(false);
         DiedPanel.SetActive(false);
         SaveText.SetActive(false);
@@ -102,14 +96,29 @@ public class PanelSystem1 : MonoBehaviour
         SaveText.SetActive(true);
         PlayerPrefs.SetInt("CurrentAmmo",gun.currentAmmo);
         PlayerPrefs.SetInt("MaxAmmo",gun.maxAmmo);
-        PlayerPrefs.SetInt("CurrentMoney",stats._currentScore);
+        PlayerPrefs.SetInt("CurrentScore",stats._currentScore);
         PlayerPrefs.SetFloat("CurrentHealth",stats.health);
+        
+        PlayerPrefs.SetInt("Saved",1);
 
         PlayerPrefs.Save();
 
         yield return new WaitForSeconds(1f);
         SaveText.SetActive(false);
         PausePanel.SetActive(false);
+    }
+
+    public void PlayerPrefsGet()
+    {
+        if (PlayerPrefs.GetInt("Saved") == 1)
+        {
+            gun.currentAmmo = PlayerPrefs.GetInt("CurrentAmmo");
+            gun.maxAmmo = PlayerPrefs.GetInt("MaxAmmo");
+            stats._currentScore = PlayerPrefs.GetInt("CurrentScore");
+            stats.health = PlayerPrefs.GetFloat("CurrentHealth");
+            hud.UpdateAmmo(gun.currentAmmo,gun.maxAmmo);
+            hud.UpdateHealth(stats.health,stats.maxHealth);
+        }
     }
 
     public void DiedPanelRestart()
