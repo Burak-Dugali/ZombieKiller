@@ -32,13 +32,10 @@ public class ZombieStats : CharacterStats
     public override void Die()
     {
         base.Die();
-        
         Instantiate(blood, transform.position, Quaternion.identity);
-
+        
         //_currentMoney += 100;
         //_moneyText.text = _currentMoney.ToString();
-
-
         //GameObject HealthPrefab = Instantiate(HealthPrefab,transform.localPosition, Quaternion.identity);
         //Debug.LogError("blood");
         if(gameObject != null)

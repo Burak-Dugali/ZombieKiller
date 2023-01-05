@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Gun : MonoBehaviour
 {
     public float damage = 10f;
-    public float range = 100f;
+    public float range = 150f;
     
     public int currentAmmo;
     public int maxAmmo;
@@ -37,13 +37,14 @@ public class Gun : MonoBehaviour
         currentAmmoText.text = currentAmmo.ToString();
         maxAmmoText.text = maxAmmo.ToString();
         canShoot = true;
+        maxAmmo = 30;
+        magazineMaxAmmo = 20; 
+        currentAmmo = magazineMaxAmmo;
     }
 
     public void Awake()
     {
-        maxAmmo = 30;
-        magazineMaxAmmo = 20; 
-        currentAmmo = magazineMaxAmmo;
+        
     }
 
     public void Update()
