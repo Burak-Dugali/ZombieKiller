@@ -20,7 +20,7 @@ public class AIDeneme : CharacterStats
     public float edgeDistance = 0.5f;
     public Animator anim;
 
-    public Transform[] waypoints;
+    //public Transform[] waypoints;
     int m_CurrentWaypointIndex;
     //int zombieDamage = 10;
 
@@ -52,7 +52,7 @@ public class AIDeneme : CharacterStats
 
         agent.isStopped = false;
         agent.speed = speedWalk;
-        agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+        //agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
         //agent.stoppingDistance = 2f;
 
         anim = GetComponent<Animator>();
@@ -67,6 +67,8 @@ public class AIDeneme : CharacterStats
     private void Update()
     {
         EnviromentView();
+        
+        
 
         if (!m_IsPatrol)
         {
@@ -82,7 +84,12 @@ public class AIDeneme : CharacterStats
         //}
         else
         {
-            Patroling();
+            if (agent.remainingDistance < 1f)
+            {
+                Vector3 pos = agent.transform.position +  new Vector3(Random.Range(-20.0f, 20.0f), 0, Random.Range(-20.0f, 20.0f));
+
+                agent.destination = pos;
+            }
         }
     }
 
@@ -111,7 +118,7 @@ public class AIDeneme : CharacterStats
                 Move(speedWalk);
                 m_TimeToRotate = timeToRotate;
                 m_WaitTime = startWaitTime;
-                agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+                //agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
             }
             else
             {
@@ -147,7 +154,7 @@ public class AIDeneme : CharacterStats
         {
             m_PlayerNear = false;
             playerLastPosition = Vector3.zero;
-            agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+            //agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 if (m_WaitTime <= 0)
@@ -192,9 +199,9 @@ public class AIDeneme : CharacterStats
     // *****************************************************************************************
     public void NextPoint()
     {
-        m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+        //m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
         //m_CurrentWaypointIndex++;
-        agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+        //agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
     }
 
     void Stop()
@@ -224,7 +231,7 @@ public class AIDeneme : CharacterStats
             {
                 m_PlayerNear = false;
                 Move(speedWalk);
-                agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+                //agent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
                 m_WaitTime = startWaitTime;
                 m_TimeToRotate = timeToRotate;
             }

@@ -6,7 +6,7 @@ public class PlayerStats : CharacterStats
 {
     private PlayerHUD hud;
     //private Health manager;
-    public GameObject healthhh;
+    //public GameObject healthhh;
 
     private void Start()
     {
@@ -34,15 +34,15 @@ public class PlayerStats : CharacterStats
             TakeDamage(10);
         }
     }
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Health"))
-        {
-            DontDestroyOnLoad(healthhh);
-            Debug.LogError("Deneme");
-            Heal(20);
-            Destroy(healthhh);
-            hud.UpdateHealth(health, maxHealth);
-        }
-    }
+    // public void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.gameObject.CompareTag("Health"))
+    //     {
+    //         DontDestroyOnLoad(healthhh);
+    //         Debug.LogError("Deneme");
+    //         Heal(20);
+    //         Destroy(healthhh);
+    //         hud.UpdateHealth(health, maxHealth);
+    //     }
+    // }
 }
